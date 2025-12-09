@@ -1,0 +1,18 @@
+version: '2'
+services:
+    haproxy-ubuntu:
+        container_name: haproxy
+        volumes:
+            - './config:/usr/local/etc/haproxy:ro'
+        image: 'haproxytech/haproxy-ubuntu:latest'
+        networks:
+          haproxy-powerschool:
+        restart: always
+        ports:
+          - PROXYIPADDR:80:80
+          - PROXYIPADDR:443:443
+          - PROXYIPADDR:8404:8404
+          - PROXYIPADDR:8443:8443
+networks:
+  haproxy-powerschool:
+    driver: bridge
